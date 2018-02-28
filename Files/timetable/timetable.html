@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<style>
+
+#bin{
+  position: fixed;
+  right: 4%;
+  bottom: 0;
+  width: 100px;
+  height: 35px;
+  border: 2px solid red;
+}
+
+    h4{
+      float: left;
+      border: solid 1px #00F;
+      padding: 3px;
+      margin: 2px;
+    }
+
+    td{
+      width: 100px;
+      height: 20px;
+      padding: 15px;
+    }
+
+</style>
+
+<div id="result"></div>
+
+<script>
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("lastname", "Smith you can save your timetable");
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+} else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+</script>
+
+<script>
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+ev.dataTransfer.setData("text/html", ev.target.id);
+}
+
+function copy(ev) {
+    ev.preventDefault();
+  var data=ev.dataTransfer.getData("text/html");
+  var nodeCopy = document.getElementById(data).cloneNode(true);
+  nodeCopy.id = "newId";
+  ev.target.appendChild(nodeCopy);
+}
+
+function bin(ev){
+  ev.preventDefault();
+  var data=ev.dataTransfer.getData("text/html");
+  ev.target.appendChild(document.getElementById(data));
+
+    var x = document.getElementById(data);
+    x.remove(x.selectedIndex);
+
+}
+
+</script>
+</head>
+<body>
+
+<p>
+<div id="bin" draggable="true" ondrop="bin(event)" ondragover="allowDrop(event)" style="text-align: center";>BIN</div>
+
+ <div id="div1" ondrop="copy(event)" ondragover="allowDrop(event)">
+ <table >
+  <th>Mr Mapako</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag1" >HCT 112</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag2" > HCT 409 </h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag3" >HCT 407</h4>
+    </td>
+  <th>Mr Rupere</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag4" >HCT 113</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag5" >HCT 108</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag6" >HCT 323/HCT 423</h4>
+    </td>
+  <th>Mr Kufandirimbwa</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag7" >HCT 120</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag8" >HCT 210</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag9" >HCT 404</h4>
+    </td>
+  <th>Mrs Hove</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag10" >HBS 111</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag11" >HBS 201</h4>
+    </td>
+  <th>Mr Mukute</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag12" >HCT 108</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag13" >HCT 201/CT 301</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag14" >HCT 426</h4>
+    </td>
+  <th>Mr Nyambo</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag15" >HCT 109</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag16" >HCT 402</h4>
+    </td>
+
+  <tr>
+  <th>Dr Hapanyengwi</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag18" >HCT 211</h4>
+    </td>
+  <th>Mr Munyaradzi</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag19" >HCT 115</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag20" >HCT 207</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag21" >HCT 215</h4>
+    </td>
+  <th>Mr Zanamwe</th>
+    <td>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag22" >HCT 114</h4>
+      <h4 draggable="true" ondragstart="drag(event)" id="drag23" >HCT 216</h4>
+    </td>
+  </tr>
+  </table>
+</div>
+</p>
+
+<p>
+<div id="div2" ondrop="copy(event)" ondragover="allowDrop(event)">
+  <table>
+    <tr > <th>Time</th>      <th>Monday</th> <th>Tuesday</th> <th>Wednesday</th> <th>Thursday</th> <th>Friday</th> </tr>
+    <tr> <th>0800-0900         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>0900-1000         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1000-1100         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1100-1200         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1200-1300         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1300-1400         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>   </th></tr>
+
+    <tr> <th>1400-1500         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1500-1600         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1600-1700         <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+
+    <tr> <th>1700-1800         <td ondrop="drop(event)" ondragover="allowDrop(event)" ondblclick="myFunction2()"><p id="demo"></p></td>    
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                               <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>    </th></tr>
+  </table>
+</div>
+</p>
+</body>
+</html>
